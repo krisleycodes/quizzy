@@ -1,32 +1,53 @@
 <script setup lang="ts">
 import { useThemeStore } from '@/stores/theme'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const themeStore = useThemeStore()
+const isRippling = ref(false)
 
 // Initialize theme when component mounts
 onMounted(() => {
   themeStore.initTheme()
 })
+
+// Toggle theme with ripple effect
+function toggleThemeWithRipple() {
+  // Show ripple effect
+  isRippling.value = true
+  
+  // Toggle theme (this immediately updates DOM in the store)
+  themeStore.toggleTheme()
+  
+  // Hide ripple after animation completes
+  setTimeout(() => {
+    isRippling.value = false
+  }, 600)
+}
 </script>
 
 <template>
-  <header class="bg-white dark:bg-gray-800 shadow-sm transition-colors duration-200">
-    <div class="screen py-4 flex justify-between items-center">
+  <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 transition-colors duration-200">
+    <div class="screen px-4 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-extrabold text-blue-600 dark:text-blue-400 transition-colors duration-200">
         Quizzy
       </h1>
 
       <button 
-        @click="themeStore.toggleTheme"
+        @click="toggleThemeWithRipple"
         class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 relative overflow-hidden"
         aria-label="Toggle dark mode"
       >
+        <!-- Ripple effect -->
+        <span
+          v-if="isRippling"
+          class="ripple-effect absolute inset-0 bg-blue-200 dark:bg-blue-800 rounded-full"
+        ></span>
+        
         <!-- Sun icon (light mode) -->
         <svg 
-          v-show="!themeStore.isDark" 
+          v-if="!themeStore.isDark" 
           xmlns="http://www.w3.org/2000/svg" 
-          class="h-6 w-6 text-blue-600 transition-colors duration-200" 
+          class="h-6 w-6 text-blue-600 relative z-10" 
           fill="none" 
           viewBox="0 0 24 24" 
           stroke="currentColor"
@@ -36,9 +57,9 @@ onMounted(() => {
         
         <!-- Moon icon (dark mode) -->
         <svg 
-          v-show="themeStore.isDark" 
+          v-else
           xmlns="http://www.w3.org/2000/svg" 
-          class="h-6 w-6 text-yellow-300 transition-colors duration-200" 
+          class="h-6 w-6 text-yellow-300 relative z-10" 
           fill="none" 
           viewBox="0 0 24 24" 
           stroke="currentColor"
@@ -49,3 +70,21 @@ onMounted(() => {
     </div>
   </header>
 </template>
+
+<style scoped>
+.ripple-effect {
+  animation: ripple 0.6s ease-out forwards;
+  transform: scale(0);
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+</style>  

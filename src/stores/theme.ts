@@ -1,42 +1,37 @@
+// First, here's the theme store (stores/theme.ts)
+
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
 export const useThemeStore = defineStore('theme', () => {
   const isDark = ref(false)
 
-  // Initialize theme from localStorage or system preference
-  const initTheme = () => {
-    const savedTheme = localStorage.getItem('quizzy-theme')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    isDark.value = savedTheme ? savedTheme === 'dark' : prefersDark
-    applyTheme()
+  function initTheme() {
+    // Check for saved theme preference or system preference
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      isDark.value = true
+      document.documentElement.classList.add('dark')
+    } else {
+      isDark.value = false
+      document.documentElement.classList.remove('dark')
+    }
   }
 
-  // Toggle theme
-  const toggleTheme = () => {
+  function toggleTheme() {
     isDark.value = !isDark.value
-  }
-
-  // Apply theme to DOM
-  const applyTheme = () => {
+    
+    // Immediately apply the theme to the document
     if (isDark.value) {
       document.documentElement.classList.add('dark')
-      document.documentElement.style.colorScheme = 'dark'
     } else {
       document.documentElement.classList.remove('dark')
-      document.documentElement.style.colorScheme = 'light'
     }
-    localStorage.setItem('quizzy-theme', isDark.value ? 'dark' : 'light')
+    
+    // Save preference
+    localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
   }
 
-  // Watch for changes and apply immediately
-  watch(isDark, () => {
-    applyTheme()
-  }, { immediate: true })
-
-  return {
-    isDark,
-    initTheme,
-    toggleTheme
-  }
+  return { isDark, initTheme, toggleTheme }
 })
+

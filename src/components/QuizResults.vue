@@ -3,6 +3,9 @@ import { computed, onMounted } from 'vue'
 import { useQuizStore } from '@/stores/quiz'
 import { gsap } from 'gsap'
 import confetti from 'canvas-confetti'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const quizStore = useQuizStore()
 
@@ -39,6 +42,7 @@ function launchConfetti() {
   })
 }
 
+
 function restartQuiz() {
   quizStore.resetQuiz()
   quizStore.fetchQuestions()
@@ -46,6 +50,7 @@ function restartQuiz() {
 
 function goToSettings() {
   quizStore.returnToSettings()
+  router.push('/')
 }
 
 </script>

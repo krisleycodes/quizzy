@@ -3,7 +3,7 @@
     class="min-h-screen bg-[#f8fafc] dark:bg-[#0f172a] text-[#1e293b] dark:text-[#f1f5f9] transition-colors duration-200">
     <QuizHeader />
 
-    <main class="screen px-4 py-8 max-w-3xl">
+    <!-- <main class="screen px-4 py-8 max-w-3xl">
       <div v-if="quizStore.loading" class="flex flex-col items-center justify-center h-64">
         <div class="w-12 h-12 border-4 border-[#3b82f6] border-t-transparent rounded-full animate-spin mb-4"></div>
         <p class="text-lg font-medium text-[#3b82f6]">Preparing your quiz...</p>
@@ -30,7 +30,9 @@
       <QuizSettings v-if="!quizStore.questions.length && !quizStore.loading && !quizStore.error" />
       <QuizGame v-else-if="quizStore.questions.length && !quizStore.quizCompleted" />
       <QuizResults v-else-if="quizStore.quizCompleted" />
-    </main>
+    </main> -->
+
+    <router-view />
   </div>
 </template>
 

@@ -164,6 +164,7 @@ export const useQuizStore = defineStore('quiz', () => {
     currentQuestion,
     totalQuestions,
     progress,
+    returnToSettings,
     formattedQuestion,
     fetchQuestions,
     resetQuiz,
