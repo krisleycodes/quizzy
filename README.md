@@ -1,33 +1,26 @@
-# quizzy
+# 🧠 Quizzy - Interactive Trivia App
 
-This template should help get you started developing with Vue 3 in Vite.
+A dynamic quiz application built with Vue.js featuring timed questions, real-time score tracking, and API-powered trivia categories. Perfect for showcasing modern frontend skills.
 
-## Recommended IDE Setup
+## ✨ Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- ⏱️ **Timed Questions** - 15-second limit per question
+- 📊 **Score Tracking** - Real-time progress updates
+- 🌐 **API-Powered** - 5000+ questions from OpenTDB
+- 🎨 **Modern UI** - Tailwind CSS styling
+- 🕹️ **Interactive** - Smooth animations and feedback
+- 🌙 **Dark Mode** - Eye-friendly theme
 
-## Type Support for `.vue` Imports in TS
+## 🛠 Tech Stack
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+**Frontend**  
+[![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge)](https://quizzy-seven-theta.vercel.app/)
+![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-## Customize configuration
+**State Management**  
+![Pinia](https://img.shields.io/badge/Pinia-ffe500?style=for-the-badge&logo=pinia&logoColor=black)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+**Animations**  
+![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
