@@ -156,7 +156,7 @@ const progressBarStyle = computed(() => ({
       <!-- Score -->
       <div class="text-center">
         <div class="inline-flex items-center px-4 py-2 bg-[#f1f5f9] dark:bg-[#334155] rounded-lg">
-          <span class="text-sm font-medium mr-2">Score:</span>
+          <span class="text-sm font-medium mr-2">Score:</span> 
           <span class="font-bold text-[#3b82f6]">{{ quizStore.score }}</span>
         </div>
       </div>

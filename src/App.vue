@@ -54,28 +54,6 @@ onMounted(() => {
   themeStore.initTheme()
 })
 
-function handleThemeChange() {
-  if (isDark.value) {
-    document.documentElement.classList.add('dark')
-    document.documentElement.style.setProperty('color-scheme', 'dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-    document.documentElement.style.setProperty('color-scheme', 'light')
-  }
-  localStorage.setItem('quizzy-theme', isDark.value ? 'dark' : 'light')
-}
-
-watch(isDark, handleThemeChange)
-
-onMounted(() => {
-  const savedTheme = localStorage.getItem('quizzy-theme')
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-
-  isDark.value = savedTheme ? savedTheme === 'dark' : prefersDark
-  handleThemeChange() // Apply immediately
-
-  quizStore.fetchQuestions()
-})
 </script>
 
 <style>
