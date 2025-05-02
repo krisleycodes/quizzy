@@ -4,7 +4,7 @@ import { useQuizStore } from '@/stores/quiz'
 
 const quizStore = useQuizStore()
 
-const difficulties = [
+const difficulties: { value: "easy" | "medium" | "hard" | "mixed"; label: string }[] = [
   { value: 'easy', label: 'Easy' },
   { value: 'medium', label: 'Medium' },
   { value: 'hard', label: 'Hard' },
@@ -99,7 +99,7 @@ function startQuiz() {
         
         <!-- Start Button -->
         <button
-          @click="quizStore.settings = { amount: questionCount, difficulty: selectedDifficulty, category: selectedCategory }; quizStore.fetchQuestions()"
+          @click="quizStore.settings = { amount: questionAmount, difficulty: selectedDifficulty, category: selectedCategory }; quizStore.fetchQuestions()"
           class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

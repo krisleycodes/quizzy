@@ -1,24 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import type { QuizSettings } from '@/stores/quiz'
+
 import { useQuizStore } from '@/stores/quiz'
 import { useRouter } from 'vue-router'
 
 // Define the QuizSettings type that was missing
-interface QuizSettings {
-  amount: number;
-  difficulty: string;
-  category: number | undefined;
-}
-
 const router = useRouter()
 const quizStore = useQuizStore()
 
-const difficulties = [
+const difficulties: { value: "easy" | "medium" | "hard" | "mixed"; label: string }[] = [
   { value: 'easy', label: 'Easy' },
   { value: 'medium', label: 'Medium' },
   { value: 'hard', label: 'Hard' },
   { value: 'mixed', label: 'Mixed' }
 ]
+
 
 const categories = [
   { id: 9, name: 'General Knowledge' },

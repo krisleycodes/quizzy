@@ -14,7 +14,7 @@ interface Question {
   all_answers?: string[]
 }
 
-interface QuizSettings {
+export interface QuizSettings {
   amount: number
   difficulty: 'easy' | 'medium' | 'hard' | 'mixed'
   category?: number
@@ -171,6 +171,7 @@ export const useQuizStore = defineStore('quiz', () => {
     startTimer,
     stopTimer,
     submitAnswer,
+    updateSettings,
     nextQuestion
   }
 })
